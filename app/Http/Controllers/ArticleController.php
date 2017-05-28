@@ -8,6 +8,12 @@ use Illuminate\Http\Request;
 
 class ArticleController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth', ['except' => ['index', 'show']]);
+        $this->middleware('can:make-action-this-post,article', ['only' => ['update', 'edit']]);
+    }
+
     public function index()
     {
         $articles = Article::latest('updated_at')->paginate(5);
