@@ -10,7 +10,7 @@ class ArticleController extends Controller
 {
     public function index()
     {
-        $articles = Article::with('tags')->latest('updated_at')->paginate(5);
+        $articles = Article::latest('updated_at')->paginate(5);
         
         return view('article.index', compact('articles'));
     }
@@ -28,20 +28,15 @@ class ArticleController extends Controller
 
     public function store(ArticleRequest $request)
     {
-        $article = \Auth::user()->attachNews($request);
-        // Новость с тэгоми
-        $article->tags()->attach($request->get('tag_list'));
-
+        \Auth::user()->attachNews($request);
         return redirect()->route('article.index');
+        $article = Tag::find($presed);
+       	$article->teachers()->attach();
     }
 
     public function update(Article $article, ArticleRequest $request)
     {
         $article->update($request->all());
-
-        $article->tags()->sync($request->get('tag_list'));
-        /*$article->tags()->detach($request->get('tag_list'));
-        $article->tags()->attach($request->get('tag_list'));*/
 
         return redirect()->route('article.index');
     }

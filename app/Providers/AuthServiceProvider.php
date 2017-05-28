@@ -21,10 +21,13 @@ class AuthServiceProvider extends ServiceProvider
      *
      * @return void
      */
+        
     public function boot()
     {
         $this->registerPolicies();
 
-        //
+        \Gate::define('make-action-this-post', function($user, $article){
+            return $user->id == $article->user_id;
+        });
     }
 }

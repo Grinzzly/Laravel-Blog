@@ -3,7 +3,9 @@
 @section('content')
     <h1>Новости</h1>
     <hr>
-    <a class="btn btn-info" href="{{ route('article.create') }}">Создать</a>
+    @if(Auth::check())
+        <a class="btn btn-info" href="{{ route('article.create') }}">Создать</a>
+    @endif
 
     @forelse($articles as $article)
         <section>
