@@ -1,4 +1,12 @@
-# Laravel Blog
+<h1 align="center">Laravel Blog</h1>
+
+<div align="center">
+  <sub>The little blog that could. Built by
+  <a href="https://github.com/Grinzzly">Grinzzly</a>
+  </a>
+</div>
+
+<br/>
 
 Once again Blog, which I wrote for better understanding of the Laravel PHP framework
 
